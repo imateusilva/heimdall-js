@@ -2,9 +2,11 @@
   "name": "heimdall-js",
   "version": "1.0.0",
   "description": "Simple and light-weight observer package",
-  "main": "index.js",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
-    "start": "sucrase-node ./index.ts"
+    "build": "rimraf dist && tsc && npm run minify",
+    "minify": "node-minify --compressor uglify-js --input 'dist/index.js' --output 'dist/index.js'"
   },
   "repository": {
     "type": "git",
@@ -17,6 +19,11 @@
   },
   "homepage": "https://github.com/maateusilva/heimdall-js#readme",
   "devDependencies": {
-    "sucrase": "^3.10.1"
-  }
+    "@node-minify/cli": "^5.2.1",
+    "@node-minify/uglify-js": "^5.2.1",
+    "rimraf": "^3.0.0",
+    "sucrase": "^3.10.1",
+    "typescript": "^3.7.2"
+  },
+  "dependencies": {}
 }
