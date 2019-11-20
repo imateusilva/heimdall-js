@@ -31,7 +31,7 @@ keyboardListener.subscribe((data) => console.log(data));
 #### Notify specific observers
 But if you want to notify only one or more specific observers... Yes, you can do it!
 
-In this case, you will need to name your observers, like on the last code line:
+In this case, you will need to add a name to your observers, like on the last code line:
 ```javascript
 import Heimdall from 'heimdall-js';
 
