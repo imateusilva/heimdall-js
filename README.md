@@ -50,7 +50,7 @@ keyboardListener.subscribe('observer1', (data) => console.log(data));
 ```
 
 #### Unsubscribe observers
-If you want to unsubscribe a single observer, you'll need to name him, but, you can run the `ubsubscribeAll` method to remove all observers (named or not).
+If you want to unsubscribe a single observer you'll need to name him, but, you can run the `ubsubscribeAll` method to remove all observers (named or not).
 
 ```javascript
 import Heimdall from 'heimdall-js';
