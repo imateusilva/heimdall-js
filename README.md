@@ -48,3 +48,6 @@ const keyboardListener = Heimdall.subject('keyboard', (notify) => {
 // Set the observer name as the first param
 keyboardListener.subscribe('observer1', (data) => console.log(data));
 ```
+
+# That's all folks!
+Simple like everything should be!
