@@ -1,7 +1,7 @@
 import SubjectInterface from './interfaces/SubjectInterface';
 import ObserverInterface from './interfaces/ObserverInterface';
 
-class Observable {
+class Heimdall {
   private observers: Object = {};
   private $subject: string = null;
 
@@ -93,4 +93,4 @@ class Observable {
   }
 }
 
-export default new Observable();
+export default new Heimdall();
