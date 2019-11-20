@@ -12,7 +12,7 @@ or
 $ yarn add heimdall-js
 ```
 ## Usage
-##### Notify all
+#### Notify all
 You can notify all registered observers in a subject:
 ```javascript
 import Heimdall from 'heimdall-js';
@@ -28,7 +28,7 @@ const keyboardListener = Heimdall.subject('keyboard', (notify) => {
 
 keyboardListener.subscribe((data) => console.log(data));
 ```
-##### Notify specific observers
+#### Notify specific observers
 But if you want to notify only one or more specific observers, you can do something like this:
 ```javascript
 import Heimdall from 'heimdall-js';
