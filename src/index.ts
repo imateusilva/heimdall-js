@@ -16,8 +16,19 @@ class Observable {
     this.$subject = subjectName;
   }
 
-  private subscribe(observer: Function, observerName?: string): void {
-    this.observers[this.$subject].push({ name: observerName, fn: observer });
+  private subscribe(observer: string | Function, observerFn?: Function): void {
+    const hasName = typeof observer === 'string';
+
+    if (hasName && !observerFn) {
+      throw new Error('You need to pass an observer function as second param when you add a name to an observer');
+    }
+
+    const observerObject = {
+      name: hasName ? observer : null,
+      fn: hasName ? observerFn : observer,
+    };
+
+    this.observers[this.$subject].push(observerObject);
   }
 
   private unsubscribe(observerName: string) {
