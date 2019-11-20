@@ -19,11 +19,11 @@ import Heimdall from 'heimdall-js';
 
 // First param is just the observer name (used to create the context)
 const keyboardListener = Heimdall.subject('keyboard', (notify) => {
-    function handleKeypress({ key }) {
+    function handleKeydown({ key }) {
         notify({ key });
     }
 
-    document.addEventListener('keypress', handleKeypress);
+    document.addEventListener('keydown', handleKeydown);
 });
 
 keyboardListener.subscribe((data) => console.log(data));
@@ -36,13 +36,13 @@ In this case, you will need to add a name to your observers, like on the last co
 import Heimdall from 'heimdall-js';
 
 const keyboardListener = Heimdall.subject('keyboard', (notify) => {
-    function handleKeypress({ key }) {
+    function handleKeydown({ key }) {
         notify({ key }, 'observer1'); // Notify only one observer
         // or...
         // notify({ key }, ['observer1', 'observer2']); // Notify multiple observers
     }
 
-    document.addEventListener('keypress', handleKeypress);
+    document.addEventListener('keydown', handleKeydown);
 });
 
 // Set the observer name as the first param
@@ -56,11 +56,11 @@ If you want to unsubscribe a single observer you'll need to name him, but, you c
 import Heimdall from 'heimdall-js';
 
 const keyboardListener = Heimdall.subject('keyboard', (notify) => {
-    function handleKeypress({ key }) {
+    function handleKeydown({ key }) {
         notify({ key });
     }
 
-    document.addEventListener('keypress', handleKeypress);
+    document.addEventListener('keydown', handleKeydown);
 });
 
 keyboardListener.subscribe((data) => console.log(data));

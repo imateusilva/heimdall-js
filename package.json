@@ -1,5 +1,5 @@
 {
-  "name": "heimdall-js",
+  "name": "maosdk",
   "version": "1.0.0",
   "description": "Simple and light-weight observer package",
   "main": "dist/index.js",
