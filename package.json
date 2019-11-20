@@ -6,7 +6,8 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "rimraf dist && tsc && npm run minify",
-    "minify": "node-minify --compressor uglify-js --input 'dist/index.js' --output 'dist/index.js'"
+    "minify": "node-minify --compressor uglify-js --input 'dist/index.js' --output 'dist/index.js'",
+    "prepublish": "npm run build"
   },
   "repository": {
     "type": "git",
