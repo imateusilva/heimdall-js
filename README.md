@@ -35,8 +35,9 @@ import Heimdall from 'heimdall-js';
 
 const keyboardListener = Heimdall.subject('keyboard', (notify) => {
     function handleKeypress({ key }) {
-        notify({ key }, 'observer1'); // String
-        // notify({ key }, ['observer1', 'observer2']); // You can use an array as wel
+        notify({ key }, 'observer1'); // Notify only one observer
+        // or...
+        // notify({ key }, ['observer1', 'observer2']); // Notify multiple observers
     }
 
     document.addEventListener('keypress', handleKeypress);
