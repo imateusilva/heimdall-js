@@ -31,13 +31,13 @@ class Observable {
     this.observers[this.$subject].push(observerObject);
   }
 
-  private unsubscribe(observerName: string) {
+  private unsubscribe(observerName: string): void {
     this.observers[this.$subject] = this.observers[this.$subject].filter(
       (item: ObserverInterface) => item.name !== observerName,
     );
   }
 
-  private unsubscribeAll(observerName: string) {
+  private unsubscribeAll(observerName: string): void {
     this.observers[this.$subject] = [];
   }
 
