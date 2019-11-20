@@ -67,7 +67,7 @@ keyboardListener.subscribe((data) => console.log(data));
 keyboardListener.subscribe('observer2', (data) => console.log(data));
 
 keyboardListener.unsubscribe('observer2');
-keyboardListener.unsubscribeAll('observer2');
+keyboardListener.unsubscribeAll();
 ```
 
 # That's all folks!
