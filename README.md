@@ -49,5 +49,26 @@ const keyboardListener = Heimdall.subject('keyboard', (notify) => {
 keyboardListener.subscribe('observer1', (data) => console.log(data));
 ```
 
+#### Unsubscribe observers
+If you want to unsubscribe a single observer, you'll need to name him, but, you can run the `ubsubscribeAll` method to remove all observers (named or not).
+
+```javascript
+import Heimdall from 'heimdall-js';
+
+const keyboardListener = Heimdall.subject('keyboard', (notify) => {
+    function handleKeypress({ key }) {
+        notify({ key });
+    }
+
+    document.addEventListener('keypress', handleKeypress);
+});
+
+keyboardListener.subscribe((data) => console.log(data));
+keyboardListener.subscribe('observer2', (data) => console.log(data));
+
+keyboardListener.unsubscribe('observer2');
+keyboardListener.unsubscribeAll('observer2');
+```
+
 # That's all folks!
 Simple like everything should be!
