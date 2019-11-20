@@ -17,6 +17,7 @@ You can notify all registered observers in a subject:
 ```javascript
 import Heimdall from 'heimdall-js';
 
+// First param is just the observer name (used to create the context)
 const keyboardListener = Heimdall.subject('keyboard', (notify) => {
     function handleKeypress({ key }) {
         notify({ key });
