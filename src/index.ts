@@ -1,10 +1,16 @@
 import SubjectInterface from './interfaces/SubjectInterface';
 import ObserverInterface from './interfaces/ObserverInterface';
 
+/**
+ * Base class which creates the subjects, subscribe and unsubscribe observers
+ */
 class Heimdall {
   private observers: Object = {};
   private $subject: string = null;
 
+  /**
+   * Bind all class methods, so every method can access the $subject variable
+   */
   constructor() {
     this.subscribe = this.subscribe.bind(this);
     this.unsubscribe = this.unsubscribe.bind(this);
@@ -12,10 +18,19 @@ class Heimdall {
     this.notify = this.notify.bind(this);
   }
 
+  /**
+   * Defines the subject to manipulate the observers
+   * @param {String} subjectName
+   */
   private setSubject(subjectName: string): void {
     this.$subject = subjectName;
   }
 
+  /**
+   * Subscribes an observer to the subject
+   * @param {String|Function} observer
+   * @param {Function} observerFn
+   */
   private subscribe(observer: string | Function, observerFn?: Function): void {
     const hasName = typeof observer === 'string';
 
@@ -31,23 +46,37 @@ class Heimdall {
     this.observers[this.$subject].push(observerObject);
   }
 
+  /**
+   * Unsubscribes a named observer from subject
+   * @param {String} observerName
+   */
   private unsubscribe(observerName: string): void {
     this.observers[this.$subject] = this.observers[this.$subject].filter(
       (item: ObserverInterface) => item.name !== observerName,
     );
   }
 
-  private unsubscribeAll(observerName: string): void {
+  /**
+   * Unsubscribes all observers from subject
+   */
+  private unsubscribeAll(): void {
     this.observers[this.$subject] = [];
   }
 
+  /**
+   * Notify all, multiple or single observer
+   * @param {any} data
+   * @param {String|Array|null} observers
+   */
   private notify(data: any, observers?: string | string[]): void {
     const subjectObservers = this.observers[this.$subject];
 
+    // Check if there are any observers on the current subject
     if (!subjectObservers || !subjectObservers.length) {
       return;
     }
 
+    // Notify all observers if there were no specified observers
     if (!observers) {
       for (let i in subjectObservers) {
         subjectObservers[i].fn(data);
@@ -56,6 +85,7 @@ class Heimdall {
       return;
     }
 
+    // If the specified observers are a string, find him and execute it
     if (typeof observers === 'string') {
       const observer = subjectObservers.find((item: ObserverInterface) => item.name === observers);
 
@@ -70,6 +100,7 @@ class Heimdall {
       return;
     }
 
+    // If there is a list of specific observers to notify, find them and execute them
     const notificationList = subjectObservers.filter(
       (item: ObserverInterface) => observers.includes(item.name),
     );
@@ -79,6 +110,11 @@ class Heimdall {
     }
   }
 
+  /**
+   * Create the subject and set it on the context ($subject)
+   * @param {String} name
+   * @param {Function} subject
+   */
   public subject(name: string, subject: Function): SubjectInterface {
     this.observers[name] = [];
     this.setSubject(name);
