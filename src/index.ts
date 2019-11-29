@@ -93,6 +93,8 @@ class Heimdall {
         throw new Error(
           `The observer ${observers} was not found on observers list.`,
         );
+        
+        return;
       }
 
       observer.fn(data);
@@ -100,7 +102,7 @@ class Heimdall {
       return;
     }
 
-    // If there is a list of specific observers to notify, find them and execute them
+    // If there is a list of specific observers to notify, find and execute them
     const notificationList = subjectObservers.filter(
       (item: ObserverInterface) => observers.includes(item.name),
     );
